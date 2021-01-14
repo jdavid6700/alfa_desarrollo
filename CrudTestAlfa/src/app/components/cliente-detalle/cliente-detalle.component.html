@@ -1,0 +1,61 @@
+<div>
+  <div *ngIf="currentCliente.id && !submitted" class="edit-form">
+    <h4>Cliente</h4>
+    <form>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          [(ngModel)]="currentCliente.nombre"
+          name="nombre"
+        />
+      </div>
+      <div class="form-group">
+        <label for="telefono">Telefono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="telefono"
+          [(ngModel)]="currentCliente.telefono"
+          name="telefono"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="ciudad">Ciudad</label>
+            <select [(ngModel)]="currentCliente.ciudad" id="ciudad" class="form-control" name="ciudad">
+              <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad.id">
+                 {{ciudad.nombre}}
+             </option>
+            </select>
+      </div>
+
+      
+    </form>
+
+
+    <button class="badge badge-danger mr-4" (click)="deleteCliente()">
+      Borrar
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-4"
+      (click)="updateCliente()"
+    >
+      Actualizar
+    </button>
+  </div>
+
+    <div *ngIf="submitted">
+      <h4>El Cliente fue actualizado exitosamente!</h4>
+      <button class="btn btn-info" (click)="backCliente()">Volver</button>
+    </div>
+
+  <div *ngIf="!currentCliente.id">
+    <br />
+    <p>No se puede acceder este Cliente...</p>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          required
+          [(ngModel)]="cliente.nombre"
+          name="nombre"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Telefono</label>
+        <input
+          class="form-control"
+          id="telefono"
+          required
+          [(ngModel)]="cliente.telefono"
+          name="telefono"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="ciudad">Ciudad</label>
+            <select [(ngModel)]="cliente.ciudad" id="ciudad" class="form-control" name="ciudad">
+              <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad.id">
+                 {{ciudad.nombre}}
+             </option>
+            </select>
+      </div>
+
+      <button (click)="saveCliente()" class="btn btn-success">Guardar</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>El Cliente fue guardado exitosamente!</h4>
+      <button class="btn btn-success" (click)="newCliente()">Nuevo</button>
+    </div>
+  </div>
+</div>
